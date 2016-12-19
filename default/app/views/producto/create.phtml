@@ -1,0 +1,39 @@
+<h1>Nuevo Producto</h1>
+<?php View::content() ?>
+<fieldset>
+	<legend>Ingrese la Informacion</legend>
+	<?php echo Form::open() ?>
+	<div class="row">
+		<div class="col-md-3">
+			<div class="form-group">
+				<label>Nombre</label>
+				<?php echo Form::text('producto.nombre','class="form-control"') ?>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group">
+				<label>Precio</label>
+				<?php echo Form::text('producto.precio','class="form-control"') ?>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group">
+				<label>Cantidad</label>
+				<?php echo Form::text('producto.unidades','class="form-control"') ?>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group">
+				<label>Medida</label>
+				<?php echo Form::text('producto.medida','class="form-control"') ?>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label>Adicional</label>
+		<?php echo Form::textarea('producto.adicional','class="form-control"') ?>
+	</div>
+	<?php echo Form::submit('Guardar') ?>
+	<?php echo Form::button('Lista de Productos','onClick=\'location.href="'.PUBLIC_PATH.'producto/" \' ') ?>
+	<?php echo Form::close() ?>
+</fieldset>

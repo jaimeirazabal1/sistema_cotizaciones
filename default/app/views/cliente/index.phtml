@@ -1,0 +1,28 @@
+<h1>Lista de Clientes</h1>
+<?php View::content() ?>
+
+<table class="table datatable">
+	<thead>
+		<th>Nombre y Apellido</th>
+		<th>CI</th>
+		<th>Direccion</th>
+		<th>Contacto</th>
+		<th>Razon Social</th>
+		<th></th>
+	</thead>
+	<?php foreach ($clientes as $key => $value): ?>
+		<tr>
+			<td><?php echo $value->nombre.' '.$value->apellido ?></td>
+			<td><?php echo $value->ci ?></td>
+			<td><?php echo $value->direccion ?></td>
+			<td><?php echo $value->contacto ?></td>
+			<td><?php echo $value->razon_social ?></td>
+			<td>
+				<?php echo Html::link('cliente/edit/'.$value->id,' Editar') ?> | 
+				<?php echo Html::link('cliente/delete/'.$value->id,' Eliminar','onClick=\'if(!confirm("Esta Seguro?")){ return false;}\' ') ?>
+			</td>
+		</tr>
+	<?php endforeach ?>
+</table>
+<br>
+<?php echo Html::link('cliente/create','Crear Cliente') ?>

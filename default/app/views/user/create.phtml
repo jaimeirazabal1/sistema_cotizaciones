@@ -1,0 +1,30 @@
+<div class="login_div">
+	
+	<h1>Crear Usuario</h1>
+	<?php View::content() ?>
+	<fieldset>
+		<legend>Datos de usuario</legend>
+		<?php echo Form::open() ?>
+		<label>Nombre de Usuario</label>
+		<?php echo Form::text('user.username','class="form-control"') ?>
+		<div class="row">
+			<div class="col-md-6">
+				<label>Password</label>
+				<?php echo Form::pass('user.password','class="form-control"') ?>
+			</div>
+			<div class="col-md-6">
+				<label>Repetir Password</label>
+				<?php echo Form::pass('user.password2','class="form-control"') ?>
+				
+			</div>
+		</div>
+		<br/>
+		<?php echo Form::submit('Guardar') ?>
+		<?php echo Form::button('Iniciar Sesion','onClick=\'location.href="'.PUBLIC_PATH.'user/login"\' ') ?>
+		<br/>
+		<?php echo Form::close() ?>
+	</fieldset>
+		<br/>
+
+	<?php //echo Html::link('user/','Lista de Usuarios') ?>
+</div>

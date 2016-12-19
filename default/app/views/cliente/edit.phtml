@@ -1,0 +1,43 @@
+<h1>Editar Cliente</h1>
+<?php View::content() ?>
+<fieldset>
+	<legend>Actualice los datos del cliente</legend>
+	<?php echo Form::open() ?>
+		<?php echo Form::hidden('cliente.id') ?>
+		<div class="row">
+			<div class="col-md-6">
+				<label>Nombre</label>
+				<?php echo Form::text('cliente.nombre','class="form-control"') ?>
+			</div>
+			<div class="col-md-6">
+				<label>Apellido</label>
+				<?php echo Form::text('cliente.apellido','class="form-control"') ?>				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<label>CI</label>
+				<?php echo Form::text('cliente.ci','class="form-control"') ?>
+			</div>
+			<div class="col-md-6">
+				<label>Fecha de Nacimiento</label>
+				<?php echo Form::text('cliente.fecha_nacimiento','class="form-control datepicker"') ?>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+		<label>Direccion</label>
+		<?php echo Form::textarea('cliente.direccion','class="form-control"') ?>
+			</div>
+			<div class="col-md-6">
+		<label>Contacto</label>
+		<?php echo Form::textarea('cliente.contacto','class="form-control"') ?>
+			</div>
+		</div>
+		<label>Razon Social</label>
+		<?php echo Form::textarea('cliente.razon_social','class="form-control"') ?>
+		<br>
+		<?php echo Form::submit('Actualizar') ?>
+		<?php echo Html::link('cliente/','Atras') ?>
+	<?php echo Form::close() ?>
+</fieldset>

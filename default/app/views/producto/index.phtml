@@ -1,0 +1,28 @@
+<h1>Lista de Productos</h1>
+<?php View::content() ?>
+<table class="table datatable">
+	<thead>
+		<th>Nombre</th>
+		<th>Precio</th>
+		<th>Adicional</th>
+		<th>Cantidad</th>
+		<th>Medida</th>
+		<th>Creado</th>
+		<th></th>
+	</thead>
+	<?php foreach ($productos as $key => $value): ?>
+		<tr>
+			<td><?php echo $value->nombre ?></td>
+			<td><?php echo $value->precio ?></td>
+			<td><?php echo $value->adicional ?></td>
+			<td><?php echo $value->unidades ?></td>
+			<td><?php echo $value->medida ?></td>
+			<td><?php echo $value->created ?></td>
+			<td>
+				<?php echo Html::link('producto/edit/'.$value->id,'Editar') ?> |
+				<?php echo Html::link('producto/delete/'.$value->id,'Eliminar',"onClick=\"if(!confirm('esta seguro?')){ return false;}\" ") ?>
+			</td>
+		</tr>
+	<?php endforeach ?>
+</table>
+<?php echo Html::link('producto/create','Crear producto') ?>

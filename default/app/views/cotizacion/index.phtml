@@ -1,0 +1,21 @@
+<h1>Lista de Cotizaciones</h1>
+<?php View::content() ?>
+<table class="table">
+	<thead>
+		<th>Referencia</th>
+		<th>Cliente</th>
+		<th>Monto</th>
+		<th>Fecha</th>
+		<th></th>
+	</thead>
+	<?php foreach ($cotizaciones as $key => $value): ?>
+		<tr>
+			<td><?php echo $value->referencia ?></td>
+			<td><?php echo $value->nombre.' '.$value->apellido ?></td>
+			<td><?php echo $value->monto ?></td>
+			<td><?php echo $value->created ?></td>
+			<td></td>
+		</tr>
+	<?php endforeach ?>
+</table>
+<?php echo Html::link('cotizacion/create','Crear Nueva') ?>

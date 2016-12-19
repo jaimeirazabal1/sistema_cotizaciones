@@ -1,0 +1,22 @@
+<h1>Lista de Usuarios</h1>
+<table class="table datatable">
+	<thead>
+		<th>ID</th>
+		<th>Username</th>
+		<th>Creado</th>
+		<th></th>
+	</thead>
+	<?php foreach ($users as $key => $value): ?>
+		<tr>
+			<td><?php echo $value->id ?></td>
+			<td><?php echo $value->username ?></td>
+			<td><?php echo $value->created ?></td>
+			<td>
+				<?php echo Html::link('user/changePassword/'.$value->id,'Cambio de Password') ?> | 
+				<?php echo Html::link('user/delete/'.$value->id,'Eliminar') ?>
+			</td>
+		</tr>
+	<?php endforeach ?>
+</table>
+
+<?php echo Html::link('user/create','Crear Usuario') ?>

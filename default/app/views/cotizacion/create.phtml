@@ -1,0 +1,108 @@
+<link rel="stylesheet" href="<?php echo PUBLIC_PATH ?>jquery-ui/jquery-ui.css">
+<script type="text/javascript" src="<?php echo PUBLIC_PATH ?>jquery-ui/jquery-ui.js"></script>
+<h1>Crear Cotizacion</h1>
+<?php View::content() ?>
+<style type="text/css">
+	.billing_table th{
+		border: 1px solid white;
+		text-align: center;
+		background-color:grey;
+		color:white;
+	}
+	.billing_table td{
+		padding:5px;
+		border:1px solid grey;
+	}
+	.billing_table{
+		min-height: 100px;
+	}
+	#products_section{
+		min-height: 200px;
+	}
+	#btn_agregar_producto{
+		margin-bottom: 10px;
+		margin-top: 10px;
+	}
+</style>
+<script type="text/javascript">
+	var productos_agregados = [];
+	$(document).ready(function(){
+		$('body').on('click','#btn_agregar_producto',function(e){
+			e.preventDefault();
+			$("#div_productos").dialog('open');
+		});
+		$("#div_productos").dialog({
+			width:'60%',
+			autoOpen:false,
+			title:'Productos'
+		})
+		$('body').on('click','.btn_agregar_carrito',function(e){
+			var tr = $(this).parent().parent();
+			var id = $(this).attr('id');
+			var nombre = tr.find('.name').text();
+			var adicional = tr.find('.additional').text();
+			var precio = tr.find('.price').text();
+			var new_tr = "<tr>";
+			 new_tr += "<td>"+nombre+"</td>";
+			 new_tr += "<td>"+adicional+"</td>";
+			 new_tr += "<td class='price_table'>"+precio+"</td>";
+			 new_tr += "<td><input type=\"number\"  value=\"1\" min='1' style=\"width:60px\" name=\"producto["+id+"]\" class=\"form-control input-xs cantidad text-center\"/></td>";
+			 new_tr += "<td><input type=\"number\" value=\""+precio+"\" min='"+precio+"' style=\"width:150px\" name=\"precio["+id+"]\" class=\"form-control precio input-xs pull-right\"/></td>";
+			 new_tr += "</tr>";
+			 productos_agregados.push(id)
+			$("#products_section").append(new_tr);
+		});
+		$('body').on('change','.cantidad',function(){
+			var cantidad = parseFloat($(this).val());
+			var precio = parseFloat($(this).parent().parent().find('.price_table').text());
+			var precio_input = $(this).parent().parent().find('.precio');
+			precio_input.val(cantidad*precio);
+		});
+	});
+</script>
+<div id="div_productos">
+	<table class="table datatable">
+		<thead>
+			<th>Nombre</th>
+			<th>Precio</th>
+			<th>Adicional</th>
+			<th>Cantidad</th>
+			<th>Medida</th>
+			<!-- <th>Creado</th> -->
+			<th></th>
+		</thead>
+		<?php foreach ($productos as $key => $value): ?>
+			<tr>
+				<td class='name'><?php echo $value->nombre ?></td>
+				<td class='price'><?php echo $value->precio ?></td>
+				<td class='additional'><?php echo $value->adicional ?></td>
+				<td class='units'><?php echo $value->unidades ?></td>
+				<td><?php echo $value->medida ?></td>
+				<!-- <td><?php //echo $value->created ?></td> -->
+				<td>
+					<button class='btn_agregar_carrito btn btn-xs btn-default' id="<?php echo $value->id ?>"><span class="glyphicon glyphicon-plus"></span></button>
+				</td>
+			</tr>
+		<?php endforeach ?>
+	</table>
+</div>
+<button id="btn_agregar_producto">Agregar Producto (F2)</button>
+<table class="billing_table" border="1" width="100%">
+	<thead>
+		<th>Producto</th>
+		<th>Descripcion</th>
+		<th width="60px">Costo Unitario</th>
+		<th width="60px">Cantidad</th>
+		<th width="150px" class=''>Precio</th>
+	</thead>
+	<tbody id="products_section">
+		<tr>
+			<td>-</td>
+			<td>-</td>
+			<td>-</td>
+			<td>-</td>
+			<td>-</td>
+		</tr>
+	</tbody>
+</table>
+
